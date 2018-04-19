@@ -1,0 +1,31 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Vende tu vehiculo</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form (ngSubmit)="createSell()">
+    <ion-item>
+      <ion-label>Coche</ion-label>
+      <ion-input type="text" [(ngModel)]="model.coche" name="title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Comprador</ion-label>
+      <ion-input [(ngModel)]="model.comprador" name="comprador"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Vendedor</ion-label>
+      <ion-input [(ngModel)]="model.vendedor" name="vendedor"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Precio</ion-label>
+      <ion-input [(ngModel)]="model.precio" name="precio"></ion-input>
+    </ion-item>
+    <button ion-button type="submit" block>Añadir a ventas</button>
+  </form>
+</ion-content>

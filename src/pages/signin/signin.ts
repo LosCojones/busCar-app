@@ -15,7 +15,8 @@ import {HomePage} from "../home/home";
 export class SigninPage {
   userData = {
     email: '',
-    password: '' };
+    password: ''
+  };
 
 
   constructor(public navCtrl: NavController,
@@ -38,22 +39,17 @@ export class SigninPage {
   enterNickname() {
     firebase.auth().signInWithEmailAndPassword(this.userData.email, this.userData.password)
       .then( (data) => {
-        this.pop();
+        console.log(data);
+        this.navCtrl.setRoot(HomePage);
       })
       .catch((error) => {
+      console.log(error);
         this.showAlertOnFail();
 
     });
 
       /*
       * signin hecho pero falta verificar que se ha iniciado sesion y tratar cada caso*/
+
   }
-
-  pop(){
-    //TODO no se puede hacer un puto pop dentro de una promesa
-    this.navCtrl.pop();
-    this.navCtrl.setRoot(HomePage);
-  }
-
-
 }

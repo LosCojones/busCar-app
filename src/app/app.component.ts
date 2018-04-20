@@ -7,6 +7,7 @@ import { HomePage } from '../pages/home/home';
 import {BuyPage} from "../pages/buy/buy";
 import {CreateSellPage} from "../pages/create-sell/create-sell";
 import {SigninPage} from "../pages/signin/signin";
+import {SignupPage} from "../pages/signup/signup";
 
 @Component({
   templateUrl: 'app.html'
@@ -25,7 +26,8 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'Comprar', component: BuyPage },
       { title: 'Vender', component: CreateSellPage },
-      { title: 'Iniciar sesión', component: SigninPage }
+      { title: 'Iniciar sesión', component: SigninPage },
+      { title: 'Registrarse', component: SignupPage },
     ];
 
   }

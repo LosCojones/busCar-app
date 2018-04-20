@@ -12,6 +12,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { SigninPage } from "../pages/signin/signin";
 import { CreateSellPage } from "../pages/create-sell/create-sell";
 import { BuyPage } from "../pages/buy/buy";
+import {SignupPage} from "../pages/signup/signup";
 
 export const firestoreConfig = {
   apiKey: "AIzaSyDp5PCWZRpJoyCtjh_fq4xDUyHQCWj4e_4",
@@ -27,6 +28,7 @@ firebase.initializeApp(firestoreConfig);
     MyApp,
     HomePage,
     SigninPage,
+    SignupPage,
     CreateSellPage,
     BuyPage
   ],
@@ -41,6 +43,7 @@ firebase.initializeApp(firestoreConfig);
     MyApp,
     HomePage,
     SigninPage,
+    SignupPage,
     CreateSellPage,
     BuyPage
   ],

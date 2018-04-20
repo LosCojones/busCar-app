@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import * as firebase from 'firebase';
 import { AngularFirestore/*, AngularFirestoreCollection, AngularFirestoreDocument*/} from "angularfire2/firestore";
+import {HomePage} from "../home/home";
 
 @IonicPage()
 @Component({
@@ -13,12 +15,15 @@ export class CreateSellPage {
 
   model = {
     coche: '',
-    comprador: '',
-    vendedor: '',
+    comprador: null,
+    vendedor: null,
     precio: ''
   };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private firestore: AngularFirestore) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private alertCtrl: AlertController,
+              private firestore: AngularFirestore) {
   }
 
   ionViewDidEnter() {
@@ -27,21 +32,37 @@ export class CreateSellPage {
   }
 
   createSell () {
-    let coche = this.model.coche;
-    let comprador = this.model.comprador;
-    let vendedor = this.model.vendedor;
-    let precio = this.model.precio;
+    let vendedor = firebase.auth().currentUser;
+    if(vendedor) {
+      let coche = this.model.coche;
+      let comprador = this.model.comprador;
+      vendedor = vendedor.uid;
+      let precio = this.model.precio;
 
-    /*
-    * Falta controlar currentuser para vendedor
-    * */
-    this.firestore.collection('sells').add({coche, comprador, vendedor, precio})
-      .then(newItem => {
-        console.log('Coche "${coche}" añadido');
-      }).catch(function (e) {
+      /*
+      Metemos en el coche creado al UID de su dueño. No se si es buena idea o es mejor meter directamente el nombre,
+      porque despues cuando vayamos a mostrar el coche, tendremos el uid del dueño no su nmobre, y para conseguir su nombre
+      tenemos que encuestar a la BD otra vez.
+       */
+      this.firestore.collection('sells').add({coche, comprador, vendedor, precio})
+        .then(newItem => {
+          console.log("Coche añadido");
+        }).catch(function (e) {
         console.log(e);
+      });
+      this.navCtrl.setRoot(HomePage);
+    } else {
+      this.showNotLoggedInUser();
+    }
+  }
+
+  showNotLoggedInUser() {
+    let alert = this.alertCtrl.create({
+      title: 'Creación fallida',
+      subTitle: 'Debe haber iniciado sesión para crear una nueva venta',
+      buttons: ['OK']
     });
-    this.navCtrl.pop();
+    alert.present();
   }
 
 }

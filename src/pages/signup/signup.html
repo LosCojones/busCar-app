@@ -6,13 +6,38 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>signup</ion-title>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Regístrate</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <form (ngSubmit)="createUser()">
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Nombre</ion-label>
+        <ion-input type="text" [(ngModel)]="userData.name" name="name" required=""></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Correo</ion-label>
+        <ion-input type="text" [(ngModel)]="userData.email" name="email" required=""></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Contraseña</ion-label>
+        <ion-input type="password" [(ngModel)]="userData.password" name="password" required=""></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Telefono</ion-label>
+        <ion-input type="number" [(ngModel)]="userData.phone" name="phone" required=""></ion-input>
+      </ion-item>
+      <ion-item>
+        <button ion-button full round color="secondary" type="submit">Registrarse</button>
+      </ion-item>
+    </ion-list>
+  </form>
 </ion-content>

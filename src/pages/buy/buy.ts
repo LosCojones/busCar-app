@@ -7,7 +7,8 @@ interface sellInstance {
   vendedor: string;
   comprador?: string;
   precio: number;
-  coche: string;
+  marca: string;
+  modelo: string;
   id?: string;
 }
 
@@ -26,14 +27,15 @@ export class BuyPage {
   }
 
   ionViewDidEnter() {
-    this.sellCollection = this.firestore.collection('sells', ref => ref.orderBy('coche'));
+    this.sellCollection = this.firestore.collection('sells', ref => ref.orderBy('marca'));
     this.sellCollection.snapshotChanges().subscribe( sellList => {
       this.sell = sellList.map(item => {
         return {
           vendedor: item.payload.doc.data().vendedor,
           precio: item.payload.doc.data().precio,
           comprador: item.payload.doc.data().comprador,
-          coche: item.payload.doc.data().coche,
+          marca: item.payload.doc.data().marca,
+          modelo: item.payload.doc.data().modelo,
           id: item.payload.doc.id
         }
       })

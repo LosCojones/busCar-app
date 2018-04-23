@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import * as firebase from 'firebase';
+import {FireProvider} from "../../providers/fire/fire";
+import {HomePage} from "../home/home";
 
 @IonicPage()
 @Component({
@@ -16,7 +18,8 @@ export class ProfilePage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private alertCtrl: AlertController) {
+              private alertCtrl: AlertController,
+              private fire: FireProvider) {
 
     this.fillUserData();
     this.getUserImg();
@@ -60,12 +63,31 @@ export class ProfilePage {
 
   }
 
+  cerrarSesion(){
+    this.fire.signOut()
+      .then((data) => {
+      console.log("User signed out");
+      })
+      .catch((error) => {
+      console.log(error);
+      });
+    this.navCtrl.setRoot(HomePage);
+    this.logOutAlert();
+  }
+
   //Esto no hace na tampoco
   showAlertOnFail() {
     let alert = this.alertCtrl.create({
       title: 'Operación fallida',
       subTitle: 'Debe haber iniciado sesión para ver su perfil',
       buttons: ['OK']
+    });
+    alert.present();
+  }
+
+  logOutAlert(){
+    let alert = this.alertCtrl.create({
+      subTitle: 'Sesión cerrada correctamente'
     });
     alert.present();
   }

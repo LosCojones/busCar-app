@@ -14,12 +14,36 @@
 <ion-content padding>
   <form (ngSubmit)="createSell()">
     <ion-item>
-      <ion-label floating>Coche</ion-label>
-      <ion-input type="text" [(ngModel)]="model.coche" name="title"></ion-input>
+      <ion-label floating>Marca</ion-label>
+      <ion-input type="text" [(ngModel)]="model.marca" name="title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Modelo</ion-label>
+      <ion-input type="text" [(ngModel)]="model.modelo" name="title"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Precio</ion-label>
-      <ion-input [(ngModel)]="model.precio" name="precio"></ion-input>
+      <ion-input type="number" [(ngModel)]="model.precio" name="precio"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Fecha de matriculación</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="model.fecha_mat" name="matriculacion"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Kilometraje</ion-label>
+      <ion-input type="number"[(ngModel)]="model.kms" name="kms"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Combustible</ion-label>
+      <ion-select [(ngModel)]="model.combustible" name="combustible">
+        <ion-option value="gasolina">Gasolina</ion-option>
+        <ion-option value="diesel">Gasoil</ion-option>
+        <ion-option value="gas">Gas</ion-option>
+      </ion-select>
+      <ion-item>
+        <ion-label floating>Descripción</ion-label>
+        <ion-input type="text" [(ngModel)]="model.descripcion" name="descripcion"></ion-input>
+      </ion-item>
     </ion-item>
     <button ion-button type="submit" block>Añadir a ventas</button>
   </form>

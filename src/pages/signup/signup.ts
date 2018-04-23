@@ -14,7 +14,8 @@ export class SignupPage {
   userData = {
     name: '',
     email: '',
-    password: ''
+    password: '',
+    imgURL:''
   };
 
   constructor(public navCtrl: NavController,

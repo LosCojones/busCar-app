@@ -14,6 +14,7 @@ import { CreateSellPage } from "../pages/create-sell/create-sell";
 import { BuyPage } from "../pages/buy/buy";
 import { SignupPage } from "../pages/signup/signup";
 import { ProfilePage } from "../pages/profile/profile";
+import { FireProvider } from '../providers/fire/fire';
 
 export const firestoreConfig = {
   apiKey: "AIzaSyDp5PCWZRpJoyCtjh_fq4xDUyHQCWj4e_4",
@@ -55,7 +56,8 @@ firebase.initializeApp(firestoreConfig);
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    FireProvider
   ]
 })
 export class AppModule {}

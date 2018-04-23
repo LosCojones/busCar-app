@@ -21,10 +21,11 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  //loggedIn : boolean;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, ) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
+
+    //firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
 
     this.pages = [
       { title: 'Home', component: HomePage },
@@ -34,8 +35,6 @@ export class MyApp {
       { title: 'Registrarse', component: SignupPage },
       { title: 'Perfil', component: ProfilePage },
     ];
-
-    //this.loggedIn = firebase.auth().currentUser;
 
   }
 
@@ -53,4 +52,5 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
+
 }

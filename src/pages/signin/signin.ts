@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from "ionic-angular";
-import * as firebase from 'firebase'
+
 import {HomePage} from "../home/home";
-//import { AngularFirestore, AngularFirestoreCollection} from "angularfire2/firestore";
-//import { Observable } from 'rxjs/Observable';
+import {FireProvider} from "../../providers/fire/fire";
+
 
 
 @IonicPage()
@@ -21,10 +21,27 @@ export class SigninPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public alertCtrl: AlertController) {
+              public alertCtrl: AlertController,
+              private fire: FireProvider) {
   }
 
   ionViewDidLoad() {
+  }
+
+
+  enterNickname() {
+    this.fire.signIn(this.userData.email, this.userData.password)
+      .then( (data) => {
+        console.log(data);
+        this.navCtrl.setRoot(HomePage);
+      })
+      .catch((error) => {
+        console.log(error);
+        //this.showAlertOnFail();
+      });
+      /*
+      * signin hecho pero falta verificar que se ha iniciado sesion y tratar cada caso*/
+
   }
 
   showAlertOnFail() {
@@ -34,22 +51,5 @@ export class SigninPage {
       buttons: ['OK']
     });
     alert.present();
-  }
-
-  enterNickname() {
-    firebase.auth().signInWithEmailAndPassword(this.userData.email, this.userData.password)
-      .then( (data) => {
-        console.log(data);
-        this.navCtrl.setRoot(HomePage);
-      })
-      .catch((error) => {
-      console.log(error);
-        this.showAlertOnFail();
-
-    });
-
-      /*
-      * signin hecho pero falta verificar que se ha iniciado sesion y tratar cada caso*/
-
   }
 }

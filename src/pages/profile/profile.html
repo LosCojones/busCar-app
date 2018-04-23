@@ -5,11 +5,44 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>{{userData.name}}'s Profile</ion-title>
+    <ion-buttons end ion-button>
+      <ion-icon name="ios-brush"></ion-icon>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
   <!--Aqui tendriamos que recuperar la información del perfil de *, sus coches ,comentarios y lo que coño -->
   <!--queramos que se muestre en el perfil de *-->
-  <img src="" alt="" id="myimg">
+  <ion-item class="myphoto">
+    <img id="myimg">
+  </ion-item>
+  <ion-item>
+    <h2>{{userData.name}}</h2>
+  </ion-item>
+  <div class="logOutbutton">
+    <button ion-button round color="danger" icon-right (click)="cerrarSesion()">
+      Cerrar sesión
+      <ion-icon name="ios-log-out"></ion-icon>
+    </button>
+  </div>
+  <h1>Historial</h1>
+  <ion-list>
+    <ion-list-header>
+      Ventas
+    </ion-list-header>
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="">
+      </ion-avatar>
+      <h2>Cher</h2>
+      <p>Ugh. As if.</p>
+    </ion-item>
+    <ion-list-header>
+      Alquileres
+    </ion-list-header>
+    <ion-item>Terminator II</ion-item>
+    <ion-item>The Empire Strikes Back</ion-item>
+    <ion-item>Blade Runner</ion-item>
+  </ion-list>
 
 </ion-content>

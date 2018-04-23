@@ -3,7 +3,7 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
-import * as firebase from 'firebase';
+//import * as firebase from 'firebase';
 
 import {BuyPage} from "../pages/buy/buy";
 import {CreateSellPage} from "../pages/create-sell/create-sell";
@@ -21,7 +21,7 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  loggedIn : boolean;
+  //loggedIn : boolean;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, ) {
     this.initializeApp();
@@ -35,7 +35,7 @@ export class MyApp {
       { title: 'Perfil', component: ProfilePage },
     ];
 
-    this.loggedIn = firebase.auth().currentUser;
+    //this.loggedIn = firebase.auth().currentUser;
 
   }
 

@@ -53,4 +53,8 @@ export class BuyPage {
       })
   }
 
+  getUserById(user) {
+
+  }
+
 }

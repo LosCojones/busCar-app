@@ -32,13 +32,12 @@ export class CreateSellPage {
   }
 
   createSell () {
-    let vendedor = firebase.auth().currentUser;
-    if(vendedor) {
+    let currentUser = firebase.auth().currentUser;
+    if(currentUser) {
       let coche = this.model.coche;
       let comprador = this.model.comprador;
-      vendedor = vendedor.uid;
+      let vendedor = currentUser.uid;
       let precio = this.model.precio;
-
       /*
       Metemos en el coche creado al UID de su dueño. No se si es buena idea o es mejor meter directamente el nombre,
       porque despues cuando vayamos a mostrar el coche, tendremos el uid del dueño no su nmobre, y para conseguir su nombre

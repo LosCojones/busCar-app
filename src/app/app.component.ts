@@ -3,11 +3,13 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
+import * as firebase from 'firebase';
 
 import {BuyPage} from "../pages/buy/buy";
 import {CreateSellPage} from "../pages/create-sell/create-sell";
 import {SigninPage} from "../pages/signin/signin";
 import {SignupPage} from "../pages/signup/signup";
+import {ProfilePage} from "../pages/profile/profile";
 
 @Component({
   templateUrl: 'app.html'
@@ -19,7 +21,9 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  loggedIn : boolean;
+
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, ) {
     this.initializeApp();
 
     this.pages = [
@@ -28,7 +32,10 @@ export class MyApp {
       { title: 'Vender', component: CreateSellPage },
       { title: 'Iniciar sesión', component: SigninPage },
       { title: 'Registrarse', component: SignupPage },
+      { title: 'Perfil', component: ProfilePage },
     ];
+
+    this.loggedIn = firebase.auth().currentUser;
 
   }
 

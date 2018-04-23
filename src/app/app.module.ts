@@ -12,7 +12,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { SigninPage } from "../pages/signin/signin";
 import { CreateSellPage } from "../pages/create-sell/create-sell";
 import { BuyPage } from "../pages/buy/buy";
-import {SignupPage} from "../pages/signup/signup";
+import { SignupPage } from "../pages/signup/signup";
+import { ProfilePage } from "../pages/profile/profile";
 
 export const firestoreConfig = {
   apiKey: "AIzaSyDp5PCWZRpJoyCtjh_fq4xDUyHQCWj4e_4",
@@ -22,13 +23,16 @@ export const firestoreConfig = {
   storageBucket: "buscar-c7fab.appspot.com",
   messagingSenderId: "504307116114"
 };
+
 firebase.initializeApp(firestoreConfig);
+
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     SigninPage,
     SignupPage,
+    ProfilePage,
     CreateSellPage,
     BuyPage
   ],
@@ -44,6 +48,7 @@ firebase.initializeApp(firestoreConfig);
     HomePage,
     SigninPage,
     SignupPage,
+    ProfilePage,
     CreateSellPage,
     BuyPage
   ],

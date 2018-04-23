@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import * as firebase from 'firebase';
 import {AngularFirestore} from "angularfire2/firestore";
 import {HomePage} from "../home/home";
@@ -19,7 +19,8 @@ export class SignupPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private firestore: AngularFirestore) {
+              private firestore: AngularFirestore,
+              private alertCtrl: AlertController) {
   }
 
 

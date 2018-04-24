@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {AlertController, NavController, NavParams} from 'ionic-angular';
+import {AlertController, App, NavController} from 'ionic-angular';
 import { ViewController } from 'ionic-angular';
 import {SigninPage} from "../signin/signin";
 import {ProfilePage} from "../profile/profile";
@@ -27,27 +27,25 @@ export class PopoverPage {
 
   currentUser = firebase.auth().currentUser;
   constructor(public navCtrl: NavController,
-              public navParams: NavParams,
+              public app: App,
               public viewCtrl: ViewController,
               public alertCtrl: AlertController) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PopoverPage');
-  }
   redirectToSignin(){
-    //this.viewCtrl.dismiss();
-    //Cuelga la parte de la navegacion por menu
-    this.navCtrl.push(SigninPage);
-
+    this.viewCtrl.dismiss().then(() => {
+      this.app.getRootNav().push(SigninPage);
+    });
   }
   redirectToProfile(){
-    //this.viewCtrl.dismiss();
-    this.navCtrl.push(ProfilePage);
+    this.viewCtrl.dismiss().then(() => {
+      this.app.getRootNav().push(ProfilePage);
+    });
   }
   redirectToSignup(){
-    //this.viewCtrl.dismiss();
-    this.navCtrl.push(SignupPage);
+    this.viewCtrl.dismiss().then(() => {
+      this.app.getRootNav().push(SignupPage);
+    });
   }
 
 }

@@ -38,8 +38,6 @@ export class ProfilePage {
     this.fillUserData();
     this.getUserImg();
 
-
-
   }
   /*
   Faltaria la parte en la que si no hay ningun usuario con sesion iniciada, no nos mostrara esta pagina. Controlaremos esta

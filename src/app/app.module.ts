@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import * as firebase from 'firebase'
@@ -15,6 +15,8 @@ import { BuyPage } from "../pages/buy/buy";
 import { SignupPage } from "../pages/signup/signup";
 import { ProfilePage } from "../pages/profile/profile";
 import { FireProvider } from '../providers/fire/fire';
+import {CarViewPage} from "../pages/car-view/car-view";
+import {PopoverPage} from "../pages/popover/popover";
 
 export const firestoreConfig = {
   apiKey: "AIzaSyDp5PCWZRpJoyCtjh_fq4xDUyHQCWj4e_4",
@@ -35,7 +37,9 @@ firebase.initializeApp(firestoreConfig);
     SignupPage,
     ProfilePage,
     CreateSellPage,
-    BuyPage
+    BuyPage,
+    CarViewPage,
+    PopoverPage
   ],
   imports: [
     BrowserModule,
@@ -51,7 +55,9 @@ firebase.initializeApp(firestoreConfig);
     SignupPage,
     ProfilePage,
     CreateSellPage,
-    BuyPage
+    BuyPage,
+    CarViewPage,
+    PopoverPage
   ],
   providers: [
     StatusBar,

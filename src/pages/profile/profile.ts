@@ -3,6 +3,17 @@ import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angula
 import * as firebase from 'firebase';
 import {FireProvider} from "../../providers/fire/fire";
 import {HomePage} from "../home/home";
+import { AngularFirestore, AngularFirestoreCollection } from "angularfire2/firestore";
+
+interface sellInstance {
+  vendedor: string;
+  comprador?: string;
+  precio: number;
+  marca: string;
+  modelo: string;
+  id?: string;
+}
+
 
 @IonicPage()
 @Component({
@@ -15,11 +26,14 @@ export class ProfilePage {
     name: ''
     //Rellenaremos esto con todos los datos a mostrar del perfil del usuario con sesion iniciada.
   };
+  sellCollection: AngularFirestoreCollection<sellInstance>;
+  sell: sellInstance[];
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private alertCtrl: AlertController,
-              private fire: FireProvider) {
+              private fire: FireProvider,
+              private firestore: AngularFirestore) {
 
     this.fillUserData();
     this.getUserImg();
@@ -33,6 +47,24 @@ export class ProfilePage {
   la pagina si no estemos logeados
    */
 
+  ionViewDidEnter() {
+    let currentUser = firebase.auth().currentUser;
+    if(currentUser) {
+      this.sellCollection = this.firestore.collection('sells', ref => ref.where('vendedor', '==', currentUser.uid));
+      this.sellCollection.snapshotChanges().subscribe(sellList => {
+        this.sell = sellList.map(item => {
+          return {
+            vendedor: item.payload.doc.data().vendedor,
+            precio: item.payload.doc.data().precio,
+            comprador: item.payload.doc.data().comprador,
+            marca: item.payload.doc.data().marca,
+            modelo: item.payload.doc.data().modelo,
+            id: item.payload.doc.id
+          }
+        })
+      });
+    }
+  }
   fillUserData() {
     let userID = firebase.auth().currentUser;
     if (userID) {
@@ -66,10 +98,10 @@ export class ProfilePage {
   cerrarSesion(){
     this.fire.signOut()
       .then((data) => {
-      console.log("User signed out");
+        console.log("User signed out");
       })
       .catch((error) => {
-      console.log(error);
+        console.log(error);
       });
     this.navCtrl.setRoot(HomePage);
     this.logOutAlert();

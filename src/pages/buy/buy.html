@@ -17,7 +17,7 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item-sliding *ngFor="let item of sell">
+    <ion-item-sliding *ngFor="let item of sell" (click)="changeToCarView(item.id)">
       <ion-item>
         <h2>{{item.marca}} {{item.modelo}}</h2>
         <p>De: {{item.vendedor}}</p>

@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 
 import * as firebase from "firebase";
-//import {AngularFirestore} from "angularfire2/firestore";
+import { AngularFirestore } from "angularfire2/firestore";
 
 
 @Injectable()
 export class FireProvider {
 
-  constructor(/*private firestore: AngularFirestore*/) {
+  constructor(private firestore: AngularFirestore) {
   }
 
   // # ##################### #
@@ -25,12 +25,25 @@ export class FireProvider {
 
 
   // # ###################### #
+  // # >>>> GET methods <<<< #
+  // # ###################### #
+
+  availableSells() {
+    return this.firestore.collection('sells', ref => ref.where('comprador', '==', null));
+  }
+
+  verCoche(id) {
+    let carRef = firebase.firestore().collection('/sells').doc(id);
+    return carRef.get();
+  }
+
+  // # ###################### #
   // # >>>> POST methods <<<< #
   // # ###################### #
 
-  // # ###################### #
-  // # >>>> UPDATE methods <<<< #
-  // # ###################### #
+  createSell(sell) {
+    return this.firestore.collection('sells').add(sell);
+  }
 
   // # ###################### #
   // # >>>> DELETE methods <<<< #

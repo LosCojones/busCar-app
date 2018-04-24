@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFirestore, AngularFirestoreCollection } from "angularfire2/firestore";
+import {CarViewPage} from "../car-view/car-view";
 // import { Observable } from 'rxjs/Observable';
 
 interface sellInstance {
@@ -20,14 +21,16 @@ interface sellInstance {
 export class BuyPage {
 
   sellCollection: AngularFirestoreCollection<sellInstance>;
-  // sell: Observable<sellInstance[]>;
   sell: sellInstance[];
+  polla: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private firestore: AngularFirestore) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private firestore: AngularFirestore) {
   }
 
   ionViewDidEnter() {
-    this.sellCollection = this.firestore.collection('sells', ref => ref.orderBy('marca'));
+    this.sellCollection = this.firestore.collection('sells', ref => ref.where('comprador', '==', null));
     this.sellCollection.snapshotChanges().subscribe( sellList => {
       this.sell = sellList.map(item => {
         return {
@@ -40,6 +43,7 @@ export class BuyPage {
         }
       })
     });
+
   }
 
   deleteCar(car: sellInstance) {
@@ -57,6 +61,12 @@ export class BuyPage {
 
   getUserById(user) {
 
+  }
+
+  changeToCarView(id){
+    this.navCtrl.push(CarViewPage, {
+      id: id
+    });
   }
 
 }

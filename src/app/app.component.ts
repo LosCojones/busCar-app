@@ -3,13 +3,9 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
-//import * as firebase from 'firebase';
 
 import {BuyPage} from "../pages/buy/buy";
 import {CreateSellPage} from "../pages/create-sell/create-sell";
-import {SigninPage} from "../pages/signin/signin";
-import {SignupPage} from "../pages/signup/signup";
-import {ProfilePage} from "../pages/profile/profile";
 
 @Component({
   templateUrl: 'app.html'
@@ -28,12 +24,9 @@ export class MyApp {
     //firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
 
     this.pages = [
-      { title: 'Home', component: HomePage },
+      { title: 'Novedades', component: HomePage },
       { title: 'Comprar', component: BuyPage },
-      { title: 'Vender', component: CreateSellPage },
-      { title: 'Iniciar sesión', component: SigninPage },
-      { title: 'Registrarse', component: SignupPage },
-      { title: 'Perfil', component: ProfilePage },
+      { title: 'Vender', component: CreateSellPage }
     ];
 
   }

@@ -33,7 +33,8 @@ export class CreateSellPage {
   }
 
   ionViewDidEnter() {
-
+    let currentUser = firebase.auth().currentUser;
+    this.model.vendedor = currentUser.uid;
   }
 
   createSell () {

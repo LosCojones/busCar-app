@@ -12,6 +12,7 @@ interface sellInstance {
   marca: string;
   modelo: string;
   id?: string;
+  imgURL: string;
 }
 
 
@@ -26,6 +27,8 @@ export class ProfilePage {
     name: ''
     //Rellenaremos esto con todos los datos a mostrar del perfil del usuario con sesion iniciada.
   };
+
+
   sellCollection: AngularFirestoreCollection<sellInstance>;
   sell: sellInstance[];
 
@@ -37,9 +40,6 @@ export class ProfilePage {
 
     this.fillUserData();
     this.getUserImg();
-
-
-
   }
   /*
   Faltaria la parte en la que si no hay ningun usuario con sesion iniciada, no nos mostrara esta pagina. Controlaremos esta
@@ -53,12 +53,17 @@ export class ProfilePage {
       this.sellCollection = this.firestore.collection('sells', ref => ref.where('vendedor', '==', currentUser.uid));
       this.sellCollection.snapshotChanges().subscribe(sellList => {
         this.sell = sellList.map(item => {
+          let imgURL2 = item.payload.doc.data().imgURL;
+          let id2 = item.payload.doc.id;
+          console.log(imgURL2 + id2);
+          this.getCarImg(imgURL2, id2);
           return {
             vendedor: item.payload.doc.data().vendedor,
             precio: item.payload.doc.data().precio,
             comprador: item.payload.doc.data().comprador,
             marca: item.payload.doc.data().marca,
             modelo: item.payload.doc.data().modelo,
+            imgURL: item.payload.doc.data().imgURL,
             id: item.payload.doc.id
           }
         })
@@ -122,6 +127,15 @@ export class ProfilePage {
       subTitle: 'Sesión cerrada correctamente'
     });
     alert.present();
+  }
+  getCarImg(URL2, id2) {
+    let pathReference = firebase.storage().ref();
+    pathReference.child("/" + URL2).getDownloadURL().then(function (url) {
+      let img = document.getElementById(id2);
+      img.setAttribute('src', url);
+    }).catch(function (error) {
+      console.log(error);
+    });
   }
 
 }

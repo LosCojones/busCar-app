@@ -28,9 +28,10 @@ export class CarViewPage {
     imgURL:'',
     fecha_pub: null,
     fecha_mat: null,
-    descripcion: ''
+    descripcion: '',
   };
   constructor(public navCtrl: NavController, public navParams: NavParams, private fire: FireProvider) {
+
   }
 
   ionViewDidLoad() {
@@ -47,11 +48,13 @@ export class CarViewPage {
           this.model.vendedor = doc.data().vendedor;
           this.model.precio = doc.data().precio;
           this.model.kms = doc.data().kms;
-          this.model.combustible = doc.data().comb;
+          this.model.combustible = doc.data().combustible;
+          this.model.fecha_pub = doc.data().fecha_pub;
+          this.model.fecha_mat = doc.data().fecha_mat;
+          this.model.descripcion = doc.data().descripcion;
           this.model.imgURL = doc.data().imgURL;
-          this.model.fecha_pub = doc.data().fpub;
-          this.model.fecha_mat = doc.data().fmat;
-          this.model.descripcion = doc.data().desc;
+          this.getCarImg();
+
         } else {
           // doc.data() will be undefined in this case
           console.log("No such car!");
@@ -66,6 +69,18 @@ export class CarViewPage {
         console.log("Error getting document:", error);
       });
     }
+
+  }
+  getCarImg() {
+    let pathReference = firebase.storage().ref();
+
+    pathReference.child("/" + this.model.imgURL).getDownloadURL().then(function(url) {
+      let img = document.getElementById('carimg');
+      img.setAttribute('src', url);
+    }).catch(function(error) {
+      console.log(error);
+    });
+
   }
 
 }

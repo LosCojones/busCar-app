@@ -30,18 +30,18 @@
   <h1>Historial</h1>
   <ion-list>
     <ion-list-header>
-      Ventas
+      VENTAS
     </ion-list-header>
     <ion-item *ngFor="let item of sell">
       <ion-avatar item-start>
-        <img src="">
+        <img id={{item.id}}>
       </ion-avatar>
       <h2>{{item.marca}} {{item.modelo}}</h2>
       <p>De: {{item.vendedor}}</p>
       <p>Precio: {{item.precio}}</p>
     </ion-item>
     <ion-list-header>
-      Alquileres
+      ALQUILERES
     </ion-list-header>
     <ion-item>Terminator II</ion-item>
     <ion-item>The Empire Strikes Back</ion-item>

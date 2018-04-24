@@ -19,6 +19,9 @@
   <ion-list>
     <ion-item-sliding *ngFor="let item of sell" (click)="changeToCarView(item.id)">
       <ion-item>
+        <ion-avatar item-start>
+          <img id={{item.id}}>
+        </ion-avatar>
         <h2>{{item.marca}} {{item.modelo}}</h2>
         <p>De: {{item.vendedor}}</p>
         <p>Precio: {{item.precio}}</p>

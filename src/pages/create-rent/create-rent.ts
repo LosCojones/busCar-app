@@ -52,6 +52,7 @@ export class CreateRentPage {
        porque despues cuando vayamos a mostrar el coche, tendremos el uid del dueño no su nmobre, y para conseguir su nombre
        tenemos que encuestar a la BD otra vez.
         */
+
       this.fire.createRent(this.model)
         .then(newItem => {
           console.log("Coche añadido");

@@ -96,6 +96,7 @@ export class ProfilePage {
             marca: item.payload.doc.data().marca,
             modelo: item.payload.doc.data().modelo,
             fecha_lim: item.payload.doc.data().fecha_lim,
+            imgURL: item.payload.doc.data().imgURL,
             id1: item.payload.doc.id
           }
         })

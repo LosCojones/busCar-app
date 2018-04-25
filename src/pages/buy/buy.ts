@@ -33,7 +33,7 @@ export class BuyPage {
     this.sellCollection = this.firestore.collection('sells', ref => ref.where('comprador', '==', null));
     this.sellCollection.snapshotChanges().subscribe( sellList => {
       this.sell = sellList.map(item => {
-        //this.getCarImg(item.payload.doc.data().imgURL, item.payload.doc.id);
+        this.getCarImg(item.payload.doc.data().imgURL, item.payload.doc.id);
         return {
           vendedor: item.payload.doc.data().vendedor,
           precio: item.payload.doc.data().precio,

@@ -20,6 +20,7 @@ interface rentInstance {
   precio: number;
   marca: string;
   modelo: string;
+  fecha_lim: string;
   id1?: string;
   imgURL: string;
 }

@@ -81,4 +81,8 @@
     <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
     <plugin name="cordova-plugin-ionic-webview" spec="^1.2.0" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
+    <plugin name="cordova-plugin-image-picker" spec="^1.1.3">
+        <variable name="PHOTO_LIBRARY_USAGE_DESCRIPTION" value="Upload your car's photo to the app" />
+    </plugin>
+    <plugin name="com.synconset.imagepicker" spec="~2.1.10" />
 </widget>

@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import * as firebase from 'firebase';
 import {HomePage} from "../home/home";
 import {FireProvider} from "../../providers/fire/fire";
+import { ImagePicker} from "@ionic-native/image-picker";
+
 
 @IonicPage()
 @Component({
@@ -29,22 +31,18 @@ export class CreateSellPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private alertCtrl: AlertController,
-              private fire: FireProvider) {
+              private fire: FireProvider,
+              private imagePicker: ImagePicker) {
   }
 
   ionViewDidEnter() {
     let currentUser = firebase.auth().currentUser;
-    this.model.vendedor = currentUser.uid;
+    if(currentUser) { this.model.vendedor = currentUser.uid; }
   }
 
   createSell () {
     let currentUser = firebase.auth().currentUser;
     if(currentUser) {
-     /*
-      Metemos en el coche creado al UID de su dueño. No se si es buena idea o es mejor meter directamente el nombre,
-      porque despues cuando vayamos a mostrar el coche, tendremos el uid del dueño no su nmobre, y para conseguir su nombre
-      tenemos que encuestar a la BD otra vez.
-       */
       this.fire.createSell(this.model)
         .then(newItem => {
           console.log("Coche añadido");
@@ -74,5 +72,33 @@ export class CreateSellPage {
     });
     alert.present();
   }
+
+  /****************************************************
+  Image - picker native permissions and usage
+   ****************************************************/
+  // hasReadPermission() {
+  //   this.imagePicker.hasReadPermission(
+  //     function(result) {
+  //       // if this is 'false' you probably want to call 'requestReadPermission' now
+  //       alert(result);
+  //     }
+  //   )
+  // }
+  //
+  // requestReadPermission() {
+  //   // no callbacks required as this opens a popup which returns async
+  //   this.imagePicker.requestReadPermission();
+  // }
+
+  // openGallery (): void {
+  //   let options = {
+  //     maximumImagesCount: 1,
+  //   };
+  //
+  //   this.imagePicker.getPictures(options).then(
+  //     file_uris => console.log(file_uris),
+  //     err => console.log(err)
+  //   );
+  // }
 
 }

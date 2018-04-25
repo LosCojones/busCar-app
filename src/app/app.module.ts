@@ -17,6 +17,7 @@ import { ProfilePage } from "../pages/profile/profile";
 import { FireProvider } from '../providers/fire/fire';
 import {CarViewPage} from "../pages/car-view/car-view";
 import {PopoverPage} from "../pages/popover/popover";
+import {ImagePicker} from "@ionic-native/image-picker";
 
 export const firestoreConfig = {
   apiKey: "AIzaSyDp5PCWZRpJoyCtjh_fq4xDUyHQCWj4e_4",
@@ -62,6 +63,7 @@ firebase.initializeApp(firestoreConfig);
   providers: [
     StatusBar,
     SplashScreen,
+    ImagePicker,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     FireProvider
   ]

@@ -37,7 +37,7 @@ export class CreateSellPage {
 
   ionViewDidEnter() {
     let currentUser = firebase.auth().currentUser;
-    if(currentUser) { this.model.vendedor = currentUser.uid; }
+    if (currentUser) { this.model.vendedor = currentUser.uid; }
   }
 
   createSell () {

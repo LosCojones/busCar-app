@@ -14,6 +14,16 @@ interface sellInstance {
   id?: string;
   imgURL: string;
 }
+interface rentInstance {
+  vendedor: string;
+  comprador?: string;
+  precio: number;
+  marca: string;
+  modelo: string;
+  fecha_lim: string;
+  id1?: string;
+  imgURL: string;
+}
 
 
 @IonicPage()
@@ -31,6 +41,8 @@ export class ProfilePage {
 
   sellCollection: AngularFirestoreCollection<sellInstance>;
   sell: sellInstance[];
+  rentCollection: AngularFirestoreCollection<rentInstance>;
+  rent: rentInstance[];
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -66,6 +78,25 @@ export class ProfilePage {
             modelo: item.payload.doc.data().modelo,
             imgURL: item.payload.doc.data().imgURL,
             id: item.payload.doc.id
+          }
+        })
+      });
+    }
+    if (currentUser){
+      this.rentCollection = this.firestore.collection('rents', ref => ref.where('comprador', '==', null));
+      this.rentCollection.snapshotChanges().subscribe( rentList => {
+        this.rent = rentList.map(item => {
+          let imgURL2 = item.payload.doc.data().imgURL;
+          let id2 = item.payload.doc.id;
+          this.getCarImg(imgURL2, id2);
+          return {
+            vendedor: item.payload.doc.data().vendedor,
+            precio: item.payload.doc.data().precio,
+            comprador: item.payload.doc.data().comprador,
+            marca: item.payload.doc.data().marca,
+            modelo: item.payload.doc.data().modelo,
+            fecha_lim: item.payload.doc.data().fecha_lim,
+            id1: item.payload.doc.id
           }
         })
       });
@@ -130,13 +161,15 @@ export class ProfilePage {
     alert.present();
   }
   getCarImg(URL2, id2) {
-    let pathReference = firebase.storage().ref();
-    pathReference.child("/" + URL2).getDownloadURL().then(function (url) {
-      let img = document.getElementById(id2);
-      img.setAttribute('src', url);
-    }).catch(function (error) {
-      console.log(error);
-    });
+    if(URL2 != "") {
+      let pathReference = firebase.storage().ref();
+      pathReference.child("/" + URL2).getDownloadURL().then(function (url) {
+        let img = document.getElementById(id2);
+        img.setAttribute('src', url);
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
   }
 
 }

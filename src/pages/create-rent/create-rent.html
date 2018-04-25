@@ -1,0 +1,50 @@
+
+<ion-header>
+
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Alquila tu vehiculo</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form (ngSubmit)="createRent()">
+    <ion-item>
+      <ion-label floating>Marca</ion-label>
+      <ion-input type="text" [(ngModel)]="model.marca" name="title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Modelo</ion-label>
+      <ion-input type="text" [(ngModel)]="model.modelo" name="title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Precio</ion-label>
+      <ion-input type="number" [(ngModel)]="model.precio" name="precio"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Fecha límite</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="model.fecha_lim" name="matriculacion"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Kilometraje</ion-label>
+      <ion-input type="number"[(ngModel)]="model.kms" name="kms"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Combustible</ion-label>
+      <ion-select [(ngModel)]="model.combustible" name="combustible">
+        <ion-option value="gasolina">Gasolina</ion-option>
+        <ion-option value="diesel">Gasoil</ion-option>
+        <ion-option value="gas">Gas</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Descripción</ion-label>
+      <ion-input type="text" [(ngModel)]="model.descripcion" name="descripcion"></ion-input>
+    </ion-item>
+    <button ion-button type="submit" block>Añadir a alquileres</button>
+  </form>
+</ion-content>

@@ -43,9 +43,14 @@
     <ion-list-header>
       ALQUILERES
     </ion-list-header>
-    <ion-item>Terminator II</ion-item>
-    <ion-item>The Empire Strikes Back</ion-item>
-    <ion-item>Blade Runner</ion-item>
+    <ion-item *ngFor="let item of rent">
+      <ion-avatar item-start>
+        <img id={{item.id1}}>
+      </ion-avatar>
+      <h2>{{item.marca}} {{item.modelo}}</h2>
+      <p>De: {{item.vendedor}}</p>
+      <p>Precio: {{item.precio}}</p>
+    </ion-item>
   </ion-list>
 
 </ion-content>

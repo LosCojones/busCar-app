@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Novedades</ion-title>
+    <ion-title>Inicio</ion-title>
     <ion-buttons end ion-button>
       <button end ion-button icon-only (click)="presentPopover($event)">
         <ion-icon name="md-person"></ion-icon>
@@ -13,11 +13,47 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
-
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+    <ion-list>
+      <ion-list-header>
+        <h2>Ventas destacadas</h2>
+      </ion-list-header>
+      <ion-item-sliding *ngFor="let item of sell" (click)="changeToCarView(item.id, '/sells')">
+        <ion-item>
+          <ion-avatar item-start>
+            <img id={{item.id}}>
+          </ion-avatar>
+          <h2>{{item.marca}} {{item.modelo}}</h2>
+          <h3>De: {{item.vendedor}}</h3>
+          <p>Precio: {{item.precio}}</p>
+        </ion-item>
+        <ion-item-options side="right">
+          <button ion-button color="danger" (click)="deleteCar(item)">
+            <ion-icon name="md-trash"></ion-icon>
+            Eliminar
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  <ion-list>
+    <ion-list-header>
+      <h2>Alquileres destacados</h2>
+    </ion-list-header>
+    <ion-item-sliding *ngFor="let alquiler of rent" (click)="changeToCarView(alquiler.id1, '/rents')">
+      <ion-item>
+        <ion-avatar item-start>
+          <img id={{alquiler.id1}}>
+        </ion-avatar>
+        <h2>{{alquiler.marca}} {{alquiler.modelo}}</h2>
+        <p>De: {{alquiler.vendedor}}</p>
+        <p>Precio: {{alquiler.precio}}</p>
+        <p>Fecha límite: {{alquiler.fecha_lim}}</p>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="danger" (click)="deleteCar(item)">
+          <ion-icon name="md-trash"></ion-icon>
+          Eliminar
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>

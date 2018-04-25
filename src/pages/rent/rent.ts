@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import * as firebase from 'firebase';
 import { AngularFirestore, AngularFirestoreCollection } from "angularfire2/firestore";
+import {CarViewPage} from "../car-view/car-view";
 
 interface rentInstance {
   vendedor: string;
@@ -12,13 +13,6 @@ interface rentInstance {
   fecha_lim: Date;
   id?: string;
 }
-
-/**
- * Generated class for the RentPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -75,6 +69,13 @@ export class RentPage {
       .catch((error) => {
         console.log(error);
       })
+  }
+
+  changeToCarView(id){
+    this.navCtrl.push(CarViewPage, {
+      id: id,
+      wherefrom: '/rents'
+    });
   }
 
 }

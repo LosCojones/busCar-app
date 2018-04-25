@@ -6,11 +6,6 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-buttons end ion-button>
-      <button>
-        <ion-icon name="ios-list"></ion-icon>
-      </button>
-    </ion-buttons>
     <ion-title>Compra un vehiculo</ion-title>
   </ion-navbar>
 
@@ -18,6 +13,14 @@
 
 
 <ion-content padding>
+  <!--<ion-item>-->
+    <!--<ion-label floating>Filtros</ion-label>-->
+    <!--<ion-select [(ngModel)]="orderBy" name="combustible">-->
+      <!--<ion-option value="0">Precio, menor a mayor</ion-option>-->
+      <!--<ion-option value="1">Precio, mayor a menor</ion-option>-->
+      <!--<ion-option value="2">Mas recientes</ion-option>-->
+    <!--</ion-select>-->
+  <!--</ion-item>-->
   <ion-list>
     <ion-item-sliding *ngFor="let item of sell" (click)="changeToCarView(item.id)">
       <ion-item>
@@ -25,7 +28,7 @@
           <img id={{item.id}}>
         </ion-avatar>
         <h2>{{item.marca}} {{item.modelo}}</h2>
-        <p>De: {{item.vendedor}}</p>
+        <h3>De: {{item.vendedor}}</h3>
         <p>Precio: {{item.precio}}</p>
       </ion-item>
       <ion-item-options side="right">

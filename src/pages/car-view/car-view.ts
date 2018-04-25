@@ -3,13 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import * as firebase from 'firebase'
 import {FireProvider} from "../../providers/fire/fire";
 
-/**
- * Generated class for the CarViewPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-car-view',
@@ -28,28 +21,37 @@ export class CarViewPage {
     imgURL:'',
     fecha_pub: null,
     fecha_mat: null,
+    fecha_lim: null,
     descripcion: '',
   };
+  wherefrom: string;
   constructor(public navCtrl: NavController, public navParams: NavParams, private fire: FireProvider) {
 
   }
 
   ionViewDidLoad() {
     this.id = this.navParams.get("id");
+    this.wherefrom = this.navParams.get("wherefrom");
     this.fillCarInfo();
   }
 
   fillCarInfo(){
     if (this.id) {
-      this.fire.verCoche(this.id).then((doc)  => {
+      this.fire.verCoche(this.id, this.wherefrom).then((doc)  => {
         if (doc.exists) {
           this.model.marca = doc.data().marca;
           this.model.modelo = doc.data().modelo;
+
           this.model.vendedor = doc.data().vendedor;
           this.model.precio = doc.data().precio;
           this.model.kms = doc.data().kms;
           this.model.combustible = doc.data().combustible;
           this.model.fecha_pub = doc.data().fecha_pub;
+          if( this.wherefrom == "/sells"){
+            this.model.fecha_mat = doc.data().fecha_mat;
+          }else if( this.wherefrom == "/rents"){
+            this.model.fecha_lim = doc.data().fecha_lim;
+          }
           this.model.fecha_mat = doc.data().fecha_mat;
           this.model.descripcion = doc.data().descripcion;
           this.model.imgURL = doc.data().imgURL;
@@ -83,4 +85,17 @@ export class CarViewPage {
 
   }
 
+
+  comprar(car_id, tipo) {
+    let currentUser = firebase.auth().currentUser;
+    if (currentUser) {
+      var carRef = firebase.firestore().collection(tipo).doc(car_id);
+      carRef.set({
+        comprador: currentUser.uid,
+      },{merge: true});
+    }
+    this.navCtrl.pop();
+  }
+
 }
+

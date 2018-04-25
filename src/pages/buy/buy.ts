@@ -77,7 +77,8 @@ export class BuyPage {
 
   changeToCarView(id){
     this.navCtrl.push(CarViewPage, {
-      id: id
+      id: id,
+      wherefrom: '/sells'
     });
   }
 

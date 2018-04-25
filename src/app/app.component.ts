@@ -25,7 +25,7 @@ export class MyApp {
 
     //firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
     this.pages = [
-      { title: 'Novedades', component: HomePage },
+      { title: 'Inicio', component: HomePage },
       { title: 'Comprar', component: BuyPage },
       { title: 'Vender', component: CreateSellPage },
       { title: 'Alquilar', component: RentPage },

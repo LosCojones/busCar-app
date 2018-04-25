@@ -83,7 +83,7 @@ export class ProfilePage {
       });
     }
     if (currentUser){
-      this.rentCollection = this.firestore.collection('rents', ref => ref.where('comprador', '==', null));
+      this.rentCollection = this.firestore.collection('rents', ref => ref.where('vendedor', '==', currentUser.uid));
       this.rentCollection.snapshotChanges().subscribe( rentList => {
         this.rent = rentList.map(item => {
           let imgURL2 = item.payload.doc.data().imgURL;
@@ -172,5 +172,4 @@ export class ProfilePage {
       });
     }
   }
-
 }

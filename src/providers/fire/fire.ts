@@ -32,8 +32,8 @@ export class FireProvider {
     return this.firestore.collection('sells', ref => ref.where('comprador', '==', null));
   }
 
-  verCoche(id) {
-    let carRef = firebase.firestore().collection('/sells').doc(id);
+  verCoche(id, tipo) {
+    let carRef = firebase.firestore().collection(tipo).doc(id);
     return carRef.get();
   }
 

@@ -44,6 +44,9 @@ export class FireProvider {
   createSell(sell) {
     return this.firestore.collection('sells').add(sell);
   }
+  createRent(rent) {
+    return this.firestore.collection('rents').add(rent);
+  }
 
   // # ###################### #
   // # >>>> DELETE methods <<<< #

@@ -1,16 +1,22 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController} from 'ionic-angular';
 import * as firebase from 'firebase';
 import {HomePage} from "../home/home";
 import {FireProvider} from "../../providers/fire/fire";
 
+/**
+ * Generated class for the CreateRentPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
 @IonicPage()
 @Component({
-  selector: 'page-create-sell',
-  templateUrl: 'create-sell.html',
+  selector: 'page-create-rent',
+  templateUrl: 'create-rent.html',
 })
-export class CreateSellPage {
-
+export class CreateRentPage {
 
   model = {
     marca: '',
@@ -22,7 +28,7 @@ export class CreateSellPage {
     combustible: '',
     imgURL:'',
     fecha_pub: new Date(),
-    fecha_mat: null,
+    fecha_lim: null,
     descripcion: ''
   };
 
@@ -38,16 +44,15 @@ export class CreateSellPage {
       this.model.vendedor = currentUser.uid;
     }
   }
-
-  createSell () {
+  createRent () {
     let currentUser = firebase.auth().currentUser;
     if(currentUser) {
-     /*
-      Metemos en el coche creado al UID de su dueño. No se si es buena idea o es mejor meter directamente el nombre,
-      porque despues cuando vayamos a mostrar el coche, tendremos el uid del dueño no su nmobre, y para conseguir su nombre
-      tenemos que encuestar a la BD otra vez.
-       */
-      this.fire.createSell(this.model)
+      /*
+       Metemos en el coche creado al UID de su dueño. No se si es buena idea o es mejor meter directamente el nombre,
+       porque despues cuando vayamos a mostrar el coche, tendremos el uid del dueño no su nmobre, y para conseguir su nombre
+       tenemos que encuestar a la BD otra vez.
+        */
+      this.fire.createRent(this.model)
         .then(newItem => {
           console.log("Coche añadido");
           this.successfullyAddedCar();
@@ -59,16 +64,14 @@ export class CreateSellPage {
       this.showNotLoggedInUser();
     }
   }
-
   showNotLoggedInUser() {
     let alert = this.alertCtrl.create({
       title: 'Creación fallida',
-      subTitle: 'Debe haber iniciado sesión para crear una nueva venta',
+      subTitle: 'Debe haber iniciado sesión para crear un nuevo alquiler',
       buttons: ['OK']
     });
     alert.present();
   }
-
   successfullyAddedCar() {
     let alert = this.alertCtrl.create({
       title: 'Coche creado',

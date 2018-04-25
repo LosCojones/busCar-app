@@ -17,6 +17,8 @@ import { ProfilePage } from "../pages/profile/profile";
 import { FireProvider } from '../providers/fire/fire';
 import {CarViewPage} from "../pages/car-view/car-view";
 import {PopoverPage} from "../pages/popover/popover";
+import {CreateRentPage} from "../pages/create-rent/create-rent";
+import {RentPage} from "../pages/rent/rent";
 
 export const firestoreConfig = {
   apiKey: "AIzaSyDp5PCWZRpJoyCtjh_fq4xDUyHQCWj4e_4",
@@ -39,7 +41,9 @@ firebase.initializeApp(firestoreConfig);
     CreateSellPage,
     BuyPage,
     CarViewPage,
-    PopoverPage
+    PopoverPage,
+    CreateRentPage,
+    RentPage
   ],
   imports: [
     BrowserModule,
@@ -57,7 +61,9 @@ firebase.initializeApp(firestoreConfig);
     CreateSellPage,
     BuyPage,
     CarViewPage,
-    PopoverPage
+    PopoverPage,
+    CreateRentPage,
+    RentPage
   ],
   providers: [
     StatusBar,

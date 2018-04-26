@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {AlertController, App, NavController} from 'ionic-angular';
+import {AlertController, App, LoadingController, NavController} from 'ionic-angular';
 import { ViewController } from 'ionic-angular';
 import {SigninPage} from "../signin/signin";
 import {ProfilePage} from "../profile/profile";
@@ -29,7 +29,8 @@ export class PopoverPage {
   constructor(public navCtrl: NavController,
               public app: App,
               public viewCtrl: ViewController,
-              public alertCtrl: AlertController) {
+              public alertCtrl: AlertController,
+              private loadingCtrl: LoadingController) {
   }
 
   redirectToSignin(){
@@ -39,13 +40,28 @@ export class PopoverPage {
   }
   redirectToProfile(){
     this.viewCtrl.dismiss().then(() => {
-      this.app.getRootNav().push(ProfilePage);
+      this.pageLoading();
     });
   }
   redirectToSignup(){
     this.viewCtrl.dismiss().then(() => {
       this.app.getRootNav().push(SignupPage);
     });
+  }
+
+  pageLoading() {
+    const loading = this.loadingCtrl.create({
+      content: 'Espere mientras se cargan sus datos...'
+    });
+    loading.present();
+    setTimeout(() => {
+      // If navCtrl page declared here
+      this.app.getRootNav().push(ProfilePage);
+    }, 1000);
+    setTimeout(() => {
+      loading.dismiss();
+
+    }, 2000);
   }
 
 }

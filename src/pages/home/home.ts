@@ -46,10 +46,7 @@ export class HomePage {
     this.sellCollection = this.firestore.collection('sells', ref => ref.where('comprador', '==', null));
     this.sellCollection.snapshotChanges().subscribe(sellList => {
       this.sell = sellList.map(item => {
-        let imgURL2 = item.payload.doc.data().imgURL;
-        let id2 = item.payload.doc.id;
-        console.log(imgURL2 + id2);
-        this.getCarImg(imgURL2, id2);
+        this.getCarImg(item.payload.doc.data().imgURL, item.payload.doc.id);
         return {
           vendedor: item.payload.doc.data().vendedor,
           precio: item.payload.doc.data().precio,
@@ -64,9 +61,7 @@ export class HomePage {
     this.rentCollection = this.firestore.collection('rents', ref => ref.where('comprador', '==', null));
     this.rentCollection.snapshotChanges().subscribe(rentList => {
       this.rent = rentList.map(item => {
-        let imgURL2 = item.payload.doc.data().imgURL;
-        let id2 = item.payload.doc.id;
-        this.getCarImg(imgURL2, id2);
+        this.getCarImg(item.payload.doc.data().imgURL, item.payload.doc.id);
         return {
           vendedor: item.payload.doc.data().vendedor,
           precio: item.payload.doc.data().precio,

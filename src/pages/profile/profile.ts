@@ -50,9 +50,6 @@ export class ProfilePage {
               private fire: FireProvider,
               private firestore: AngularFirestore) {
 
-    this.fillUserData();
-    this.getUserImg();
-
   }
   /*
   Faltaria la parte en la que si no hay ningun usuario con sesion iniciada, no nos mostrara esta pagina. Controlaremos esta
@@ -60,16 +57,13 @@ export class ProfilePage {
   la pagina si no estemos logeados
    */
 
-  ionViewDidEnter() {
+  ionViewDidLoad() {
     let currentUser = firebase.auth().currentUser;
     if(currentUser) {
       this.sellCollection = this.firestore.collection('sells', ref => ref.where('vendedor', '==', currentUser.uid));
       this.sellCollection.snapshotChanges().subscribe(sellList => {
         this.sell = sellList.map(item => {
-          let imgURL2 = item.payload.doc.data().imgURL;
-          let id2 = item.payload.doc.id;
-          console.log(imgURL2 + id2);
-          this.getCarImg(imgURL2, id2);
+          this.getCarImg(item.payload.doc.data().imgURL, item.payload.doc.id);
           return {
             vendedor: item.payload.doc.data().vendedor,
             precio: item.payload.doc.data().precio,
@@ -86,9 +80,7 @@ export class ProfilePage {
       this.rentCollection = this.firestore.collection('rents', ref => ref.where('vendedor', '==', currentUser.uid));
       this.rentCollection.snapshotChanges().subscribe( rentList => {
         this.rent = rentList.map(item => {
-          let imgURL2 = item.payload.doc.data().imgURL;
-          let id2 = item.payload.doc.id;
-          this.getCarImg(imgURL2, id2);
+          this.getCarImg(item.payload.doc.data().imgURL, item.payload.doc.id);
           return {
             vendedor: item.payload.doc.data().vendedor,
             precio: item.payload.doc.data().precio,
@@ -102,6 +94,8 @@ export class ProfilePage {
         })
       });
     }
+    this.fillUserData();
+    this.getUserImg();
   }
   fillUserData() {
     let userID = firebase.auth().currentUser;
@@ -164,7 +158,7 @@ export class ProfilePage {
   getCarImg(URL2, id2) {
     if(URL2 != "") {
       let pathReference = firebase.storage().ref();
-      pathReference.child("/" + URL2).getDownloadURL().then(function (url) {
+      pathReference.child('/' + URL2).getDownloadURL().then(function (url) {
         let img = document.getElementById(id2);
         img.setAttribute('src', url);
       }).catch(function (error) {

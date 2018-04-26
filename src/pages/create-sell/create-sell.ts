@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import * as firebase from 'firebase';
 import {HomePage} from "../home/home";
 import {FireProvider} from "../../providers/fire/fire";
-import { ImagePicker} from "@ionic-native/image-picker";
 
 
 @IonicPage()
@@ -31,8 +30,7 @@ export class CreateSellPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private alertCtrl: AlertController,
-              private fire: FireProvider,
-              private imagePicker: ImagePicker) {
+              private fire: FireProvider) {
   }
 
   ionViewDidEnter() {

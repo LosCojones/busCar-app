@@ -1,3 +1,32 @@
 page-car-view {
-
+  [cards] {
+    .grid-full ion-col {
+      flex: 0 0 50%;
+      max-width: 50%;
+      padding: 5px 0;
+    }
+    .row {
+      padding: 0 12px;
+    }
+    .col {
+      padding: 5px 0;
+    }
+    .card {
+      text-align: center;
+      margin: 0 5px;
+      width: calc(100% - 10px);
+      padding: 14px;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.10);
+      border-radius: 4px;
+      background-color: skyblue;
+      h1 {
+        font-weight: 400;
+        font-size: 2rem;
+      }
+      p {
+        font-weight: 100;
+        font-size: 1.2rem;
+      }
+    }
+  }
 }

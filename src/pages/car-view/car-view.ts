@@ -65,6 +65,7 @@ export class CarViewPage {
         userRef.get().then((doc)  => {
           if (doc.exists) {
             this.model.vendedor = doc.data().name;
+            console.log(this.model.vendedor);
           }
         });
       }).catch(function(error) {
@@ -74,15 +75,15 @@ export class CarViewPage {
 
   }
   getCarImg() {
-    let pathReference = firebase.storage().ref();
-
-    pathReference.child("/" + this.model.imgURL).getDownloadURL().then(function(url) {
-      let img = document.getElementById('carimg');
-      img.setAttribute('src', url);
-    }).catch(function(error) {
-      console.log(error);
-    });
-
+    if(this.model.imgURL != ''){
+      let pathReference = firebase.storage().ref();
+      pathReference.child("/" + this.model.imgURL).getDownloadURL().then(function(url) {
+        let img = document.getElementById('carimg');
+        img.setAttribute('src', url);
+      }).catch(function(error) {
+        console.log(error);
+      });
+    }
   }
 
 

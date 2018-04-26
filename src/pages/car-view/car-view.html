@@ -8,23 +8,73 @@
 
 <ion-content padding>
   <ion-item>
-    <h1>{{model.marca}} {{model.modelo}}</h1>
+    <div text-center>
+      <h1>{{model.marca}} {{model.modelo}}</h1>
+    </div>
     <ion-item class="myphoto">
       <img id = "carimg">
     </ion-item>
-    <p>De: {{model.vendedor}}</p>
-    <p>Precio: {{model.precio}}</p>
-    <p>Combustible: {{model.combustible}}</p>
-    <p>Kms: {{model.kms}}</p>
-    <p *ngIf='this.wherefrom == "/sells"'>Fecha de matriculación: {{model.fecha_mat}}</p>
-    <p *ngIf='this.wherefrom == "/rents"'>Fecha límite: {{model.fecha_lim}}</p>
-    <p>Descripción: {{model.descripcion}}</p>
-    <p>Publicado el {{model.fecha_pub}}</p>
+    <div cards>
+
+      <div class="grid-full">
+        <ion-row>
+          <ion-col>
+            <ion-card>
+              <h1>{{model.vendedor}}</h1>
+              <p>Vendedor</p>
+            </ion-card>
+          </ion-col>
+
+          <ion-col>
+            <ion-card>
+              <h1>{{model.precio}}</h1>
+              <p>Precio</p>
+            </ion-card>
+          </ion-col>
+
+          <ion-col>
+            <ion-card>
+              <h1>{{model.combustible}}</h1>
+              <p>Combustible</p>
+            </ion-card>
+          </ion-col>
+
+          <ion-col>
+            <ion-card *ngIf='this.wherefrom == "/sells"'>
+              <h1>{{model.fecha_mat}}</h1>
+              <p>F. Matriculación</p>
+            </ion-card>
+            <ion-card *ngIf='this.wherefrom == "/rents"' >
+              <h1>{{model.fecha_mat}}</h1>
+              <p>F. Límite</p>
+            </ion-card>
+          </ion-col>
+
+          <ion-col>
+            <ion-card>
+              <h1>{{model.kms}}</h1>
+              <p>Kilómetros</p>
+            </ion-card>
+          </ion-col>
+
+          <ion-col>
+            <ion-card>
+              <h1>{{model.descripcion}}</h1>
+              <p>Descripción</p>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </div>
+
+    </div>
   </ion-item>
-  <button *ngIf='this.wherefrom == "/sells"' (click)="comprar(id, '/sells')">Comprar
-    <ion-icon name="ios-cash-outline"></ion-icon>
-  </button>
-  <button *ngIf='this.wherefrom == "/rents"' (click)="comprar(id, '/rents')">Alquilar
-    <ion-icon name="ios-cash-outline"></ion-icon>
-  </button>
+  <div text-center>
+    <button ion-button *ngIf='this.wherefrom == "/sells"' icon-right (click)="comprar(id, '/sells')">Comprar
+      <ion-icon name="ios-cash-outline"></ion-icon>
+    </button>
+    <button ion-button *ngIf='this.wherefrom == "/rents"' icon-right (click)="comprar(id, '/rents')">Alquilar
+      <ion-icon name="ios-cash-outline"></ion-icon>
+    </button>
+  </div>
+
 </ion-content>

@@ -21,6 +21,14 @@
       <!--<ion-option value="2">Mas recientes</ion-option>-->
     <!--</ion-select>-->
   <!--</ion-item>-->
+  <ion-item>
+    <ion-label text-center>Filtros</ion-label>
+      <ion-select   text-center name="combustible">
+        <ion-option value="gasolina">Gasolina</ion-option>
+        <ion-option value="diesel">Gasoil</ion-option>
+        <ion-option value="gas">Gas</ion-option>
+      </ion-select>
+  </ion-item>
   <ion-list>
     <ion-item-sliding *ngFor="let item of sell" (click)="changeToCarView(item.id)">
       <ion-item>

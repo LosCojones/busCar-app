@@ -30,7 +30,7 @@ export class BuyPage {
   }
 
   ionViewDidEnter() {
-    this.sellCollection = this.firestore.collection('sells', ref => ref.where('comprador', '==', null));
+    this.sellCollection = this.firestore.collection('sells', ref => ref.where('comprador', '==', null).orderBy('precio', 'desc'));
     this.sellCollection.snapshotChanges().subscribe( sellList => {
       this.sell = sellList.map(item => {
         this.getCarImg(item.payload.doc.data().imgURL, item.payload.doc.id);
@@ -80,6 +80,9 @@ export class BuyPage {
       id: id,
       wherefrom: '/sells'
     });
+  }
+  orderByDate(){
+    console.log("si se puede");
   }
 
 }

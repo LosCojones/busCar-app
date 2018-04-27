@@ -52,7 +52,6 @@ export class CarViewPage {
           }else if( this.wherefrom == "/rents"){
             this.model.fecha_lim = doc.data().fecha_lim;
           }
-          this.model.fecha_mat = doc.data().fecha_mat;
           this.model.descripcion = doc.data().descripcion;
           this.model.imgURL = doc.data().imgURL;
           this.getCarImg();

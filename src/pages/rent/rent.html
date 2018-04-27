@@ -15,6 +15,15 @@
 
 
 <ion-content padding>
+  <ion-item>
+    <ion-label text-center><ion-icon name="ios-list"></ion-icon>  FILTROS</ion-label>
+    <ion-select   text-center>
+      <ion-option value="precio">Precio</ion-option>
+      <ion-option value="vendedor">Vendedor</ion-option>
+      <ion-option value="kms">Kilómetros</ion-option>
+      <ion-option value="fecha_mat">F. Matriculación</ion-option>
+    </ion-select>
+  </ion-item>
   <ion-list>
     <ion-item-sliding *ngFor="let item of rent" (click)="changeToCarView(item.id)">
       <ion-item>

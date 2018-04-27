@@ -1,15 +1,20 @@
 <ion-menu [content]="content">
   <ion-header>
     <ion-toolbar>
-      <ion-title>Menu</ion-title>
+      <ion-title>Menú</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-content>
     <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
-      </button>
+        <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+          <ion-icon *ngIf="p.title == 'Inicio'" name="ios-home"></ion-icon>
+          <ion-icon *ngIf="p.title == 'Comprar'" name="ios-car"></ion-icon>
+          <ion-icon *ngIf="p.title == 'Vender'" name="ios-create"></ion-icon>
+          <ion-icon *ngIf="p.title == 'Alquilar'" name="ios-car"></ion-icon>
+          <ion-icon *ngIf="p.title == 'Añadir alquiler'" name="ios-create"></ion-icon>
+          {{p.title}}
+        </button>
     </ion-list>
   </ion-content>
 
